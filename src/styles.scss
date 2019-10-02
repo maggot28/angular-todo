@@ -1,0 +1,43 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "assets/scss/base/reset.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "assets/scss/base/variables.scss";
+
+body,html{
+    height: 100%;
+    min-height: 100%;
+}
+
+.tasks-list{
+    min-height: 100%;
+}
+
+.container{
+    max-width: $container-width;
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    min-height: 100%;
+}
+
+.menu-toggle{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.priority-3 {
+    background-color:lighten(#f44336, 32%);
+    &:hover{
+        background-color:darken(lighten(#f44336, 32%), 2%) !important;
+    }
+}
+.priority-2 {
+    background-color:lighten(#f44336, 38%);
+    &:hover{
+        background-color:darken(lighten(#f44336, 38%), 2%) !important;
+    }
+}
+ 
