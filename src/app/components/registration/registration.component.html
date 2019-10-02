@@ -1,0 +1,35 @@
+<div class="container">
+    <form class="main" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+        <h1>{{ 'Registration' | translate}}</h1>
+        <mat-form-field>
+            <input  matInput type="email" autocomplete="off"
+                    placeholder="{{ 'Email' | translate }}" 
+                    formControlName="email">
+            <mat-error *ngIf="registerForm.get('email').hasError('email') && !registerForm.get('email').hasError('required')">
+                {{ 'Please enter a valid email address' | translate }}
+            </mat-error>
+            <mat-error *ngIf="registerForm.get('email').hasError('required')">
+                {{ 'This is required' | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input  matInput type="password" 
+                    placeholder="{{ 'Password' | translate }}" 
+                    formControlName="password">
+            <mat-error *ngIf="registerForm.get('password').hasError('required')">
+                {{ 'This is required' | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input  matInput type="password" 
+                    placeholder="{{ 'Password Confirmation' | translate }}"
+                    formControlName="password_confirmation">
+
+            <mat-error *ngIf="registerForm.get('password_confirmation').hasError('confirmPassword')">
+                {{ 'Password match error' | translate }}
+            </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">{{ 'Register' | translate }}</button>
+        <a class="text-center" routerLink="/login">{{ 'Login' | translate }}</a>
+    </form>
+</div>

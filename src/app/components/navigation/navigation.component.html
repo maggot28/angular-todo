@@ -1,0 +1,6 @@
+<img src="{{ profile?.avatarUrl }}">
+<mat-list>
+    <mat-list-item><a mat-stroked-button routerLink="/profile" routerLinkActive="current">{{ 'Profile' | translate }}</a></mat-list-item>
+    <mat-list-item><a mat-stroked-button routerLink="/" routerLinkActive="current">{{ 'Tasks' | translate }}</a></mat-list-item>
+    <mat-list-item (click)="logout()"><button mat-stroked-button>{{ 'Logout' | translate }}</button></mat-list-item>
+</mat-list>

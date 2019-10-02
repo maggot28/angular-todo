@@ -1,0 +1,26 @@
+<div class="container">
+    <form class="main" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+        <h1>{{ 'Login' | translate}}</h1>
+        <mat-form-field>
+            <input  matInput type="email" autocomplete="off"
+                    placeholder="{{ 'Email' | translate }}" 
+                    formControlName="email">
+            <mat-error *ngIf="loginForm.get('email').hasError('email') && !loginForm.get('email').hasError('required')">
+                {{ 'Please enter a valid email address' | translate }}
+            </mat-error>
+            <mat-error *ngIf="loginForm.get('email').hasError('required')">
+                {{ 'This is required' | translate }}
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input  matInput type="password" 
+                    placeholder="{{ 'Password' | translate }}" 
+                    formControlName="password">
+            <mat-error *ngIf="loginForm.get('password').hasError('required')">
+                {{ 'This is required' | translate }}
+            </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">{{ 'Login' | translate }}</button>
+        <a routerLink="/signup">{{ 'Signup' | translate }}</a>
+    </form>
+</div>

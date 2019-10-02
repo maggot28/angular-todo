@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>
+  <mat-form-field class="task-edit-input">
+    <input  matInput type="text" autocomplete="off" [(ngModel)]="data.name"
+            placeholder="{{ 'Name' | translate }}">
+  </mat-form-field>
+</h1>
+
+
+
+
+<div mat-dialog-content>
+
+  <mat-form-field class="task-edit-input">
+    <textarea  matInput type="text" autocomplete="off" [(ngModel)]="data.description"
+            placeholder="{{ 'Description' | translate }}"></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="task-edit-input">
+      <mat-select placeholder="{{ 'Priority' | translate }}" [(ngModel)]="data.priority.order">
+          <mat-option [value]="1">{{ 'Low' | translate }}</mat-option>
+          <mat-option [value]="2">{{ 'Normal' | translate }}</mat-option>
+          <mat-option [value]="3">{{ 'Hight' | translate }}</mat-option>
+      </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="task-edit-input">
+      <input matInput [matDatepicker]="picker"  [(ngModel)]="data.deadline"
+              placeholder="{{ 'Choose date' | translate }}" autocomplete="off" (click)="picker.open()">
+      <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field> 
+
+</div>
+
+
+
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close (click)='onNoClick()'>{{ 'Close' | translate }}</button>
+</div>

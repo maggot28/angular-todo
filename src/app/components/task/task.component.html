@@ -1,0 +1,49 @@
+<mat-sidenav-container class="tasks-list">
+    <mat-sidenav #sidenav mode="side">
+        <app-navigation></app-navigation>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="menu-toggle">
+            <mat-icon *ngIf="!sidenav.opened" mat-button (click)="sidenav.toggle()" aria-hidden="false">menu</mat-icon>
+            <mat-icon *ngIf="sidenav.opened" mat-button (click)="sidenav.toggle()" aria-hidden="false">menu_open</mat-icon>
+        </div>
+        <div class="container">
+            <form class="main inline" [formGroup]="taskForm" (ngSubmit)="create(taskForm.value)">
+                <mat-form-field>
+                    <input  matInput type="text" autocomplete="off"
+                            placeholder="{{ 'Name' | translate }}" 
+                            formControlName="name">
+                    <mat-error *ngIf="taskForm.get('name').hasError('required')">
+                        {{ 'This is required' | translate }}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-select formControlName="priority" placeholder="{{ 'Priority' | translate }}">
+                        <mat-option [value]="1">{{ 'Low' | translate }}</mat-option>
+                        <mat-option [value]="2">{{ 'Normal' | translate }}</mat-option>
+                        <mat-option [value]="3">{{ 'Hight' | translate }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput formControlName="deadline" [matDatepicker]="picker"
+                           placeholder="{{ 'Choose date' | translate }}" autocomplete="off" (click)="picker.open()">
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!taskForm.valid">{{ 'Add' | translate }}</button>
+            </form>
+            <mat-tab-group mat-align-tabs="center" (selectedTabChange)="changeTab($event)">
+                <mat-tab isActive='true' label="{{ 'Active' | translate }}">
+                    <app-tasks-list [type]="'active'" [active]="activeTab == 'active'"></app-tasks-list>
+                </mat-tab>
+                <mat-tab label="{{ 'Done' | translate }}">
+                    <app-tasks-list [type]="'done'" [active]="activeTab == 'done'"></app-tasks-list>
+                </mat-tab>
+                <mat-tab label="{{ 'Archive' | translate }}">
+                    <app-tasks-list [type]="'archive'" [active]="activeTab == 'archive'"></app-tasks-list>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
