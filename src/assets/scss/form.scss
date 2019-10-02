@@ -1,0 +1,48 @@
+
+form.main{
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-sizing: border-box;
+
+    h1{
+        text-align: center;
+        font-weight: bold;
+        font-size: 26px;
+    }
+
+    .mat-form-field{
+        display: block;
+        input{
+            width: 100%;
+        }
+    }
+
+    button[type='submit']{
+        display: block;
+        margin: 0 auto;
+    }
+
+    &.inline{
+        max-width: 80%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button[type='submit']{
+            display: block;
+            margin: 0 0;
+        }
+    }
+}
+
+
+
+
+
+
+
