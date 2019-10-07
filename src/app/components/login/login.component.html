@@ -1,6 +1,6 @@
 <div class="container">
     <form class="main" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-        <h1>{{ 'Login' | translate}}</h1>
+        <h1>{{ 'Login' | translate }}</h1>
         <mat-form-field>
             <input  matInput type="email" autocomplete="off"
                     placeholder="{{ 'Email' | translate }}" 
@@ -22,5 +22,8 @@
         </mat-form-field>
         <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid">{{ 'Login' | translate }}</button>
         <a routerLink="/signup">{{ 'Signup' | translate }}</a>
+        <p class="demo-info">
+            {{ 'Demo User' | translate }}: <br/> {{ 'User Login' | translate }} - test@test.com <br/> {{ 'Password' | translate }} - 123123
+        </p>
     </form>
 </div>
