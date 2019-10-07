@@ -19,7 +19,7 @@ export class TasksListComponent {
 
   @Input() set active(active: boolean) {
     if(active){
-      this.taskService.getAll(this.type)
+      this.taskService.get(this.type)
     }
     this.subscription = this.taskService.tasks.subscribe((userTasks : Task[]) => {
       this.tasks = userTasks
@@ -37,10 +37,6 @@ export class TasksListComponent {
 
   statusChange(id : string, status : boolean): void {
     this.taskService.update(id, 'status', status)
-  }
-
-  update(id : string, formData) {
-    this.taskService.update(id, formData)
   }
 
   restore(id : string): void {

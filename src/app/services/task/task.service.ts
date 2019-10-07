@@ -14,7 +14,6 @@ import { Task } from 'src/app/models/task/task';
 export class TaskService extends BaseService {
 
   public readonly tasks : ReplaySubject<Task[]>
-
   private tasksData : Task[]
 
   constructor(
@@ -25,7 +24,7 @@ export class TaskService extends BaseService {
    }
 
 
-  getAll(status : string = ''){
+  get(status : string = ''){
     let response
     if(status){
       response = this.http.get(environment.apiUrl+'/task/get/'+status)
@@ -33,7 +32,6 @@ export class TaskService extends BaseService {
       response = this.http.get(environment.apiUrl+'/task/get')
     }
     response.pipe(map(data => new ServerResponse(data))).pipe(catchError(this.handleError))
-
     response.subscribe((response : ServerResponse) => { 
       if(response.status == true){
         this.tasksData = response.data.map((task : any) => new Task(task))
@@ -45,24 +43,12 @@ export class TaskService extends BaseService {
   create(taskCreateData) {
     let response = this.http.post(environment.apiUrl+'/task/create', taskCreateData)
     .pipe(map(data => new ServerResponse(data))).pipe(catchError(this.handleError))
-
     response.subscribe((response : ServerResponse) => { 
       if(response.status == true){
         this.tasksData.push(new Task(response.data))
         this.tasks.next(this.tasksData)
       }
     }) 
-  }
-
-  edit(id) {
-    this.tasksData.forEach(function(task, i, tasks){
-      if(task.id == id){
-        tasks[i].edit = !tasks[i].edit 
-      } else {
-        tasks[i].edit = false
-      } 
-    })
-    this.tasks.next(this.tasksData)
   }
 
   update(id : string, taskUpdateData, updateValue = false) {
@@ -73,7 +59,6 @@ export class TaskService extends BaseService {
       response = this.http.put(environment.apiUrl+'/task/update/'+id, taskUpdateData.toJSON())
     }
     response.pipe(map(data => new ServerResponse(data))).pipe(catchError(this.handleError))
-
     response.subscribe((response : ServerResponse) => { 
       if(response.status == true){
         if(taskUpdateData == "status"){
@@ -82,9 +67,6 @@ export class TaskService extends BaseService {
           let task = new Task(response.data);
           var index = this.tasksData.indexOf(task);
           this.tasksData[index] = task;
-          
-          // this.tasksData = this.tasksData.filter(task => task.id != id)
-          // this.tasksData.push(new Task(response.data))
         }
         this.tasks.next(this.tasksData)
       }
@@ -99,7 +81,6 @@ export class TaskService extends BaseService {
       response = this.http.delete(environment.apiUrl+'/task/delete/'+id)
     }
     response.pipe(map(data => new ServerResponse(data))).pipe(catchError(this.handleError))
-
     response.subscribe((response : ServerResponse) => { 
       if(response.status == true){
         this.tasksData = this.tasksData.filter(task => task.id != id)

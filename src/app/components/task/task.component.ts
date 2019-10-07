@@ -22,7 +22,7 @@ export class TaskComponent implements OnInit {
     this.taskForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       priority: [2],
-      deadline: [{value: new Date()}],
+      deadline: [{value: new Date().setUTCDate(0)}],
     })
   }
 

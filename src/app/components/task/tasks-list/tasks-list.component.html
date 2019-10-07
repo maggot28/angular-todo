@@ -3,12 +3,11 @@
         <div>
             <span>{{ task.deadline | date:'shortDate' }}</span> - 
             <span>{{ task.name }}</span>
-            <!-- <div>{{ task.description }}</div> -->
             <span class="task-card-footer">
-                <button *ngIf="type == 'active'" mat-icon-button color="accent" (click)="statusChange(task.id, 1)">
+                <button *ngIf="type == 'active'" mat-icon-button color="accent" (click)="statusChange(task.id, true)">
                     <mat-icon aria-hidden="false">check</mat-icon>
                 </button>
-                <button *ngIf="type == 'done'" mat-icon-button color="accent" (click)="statusChange(task.id, 0)">
+                <button *ngIf="type == 'done'" mat-icon-button color="accent" (click)="statusChange(task.id, false)">
                     <mat-icon aria-hidden="false">close</mat-icon>
                 </button>
                 <button *ngIf="type != 'archive'" mat-icon-button color="warn" (click)="delete(task.id)">
