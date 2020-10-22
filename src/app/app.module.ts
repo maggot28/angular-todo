@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatButtonModule, MatCardModule, MatInputModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatNativeDateModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatRadioModule, MatInputModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatNativeDateModule } from '@angular/material';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -28,6 +28,7 @@ import { TaskComponent } from './components/task/task.component';
 import { ApiInterceptor } from './helpers/api.interceptor';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { TasksListComponent, TasksEditComponent } from './components/task/tasks-list/tasks-list.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -41,14 +42,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     TaskComponent,
     NavigationComponent,
     TasksListComponent,
-    TasksEditComponent
+    TasksEditComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatButtonModule, MatInputModule, MatSelectModule,
+    MatButtonModule, MatInputModule, MatSelectModule, MatRadioModule,
     MatCardModule, MatSidenavModule, MatIconModule, MatListModule, MatGridListModule,
     MatDatepickerModule, MatNativeDateModule, MatTabsModule, MatDialogModule,
     AppRoutingModule,

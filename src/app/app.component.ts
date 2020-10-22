@@ -20,6 +20,7 @@ export class AppComponent {
     console.log()
     if(!this.authService.isLoggedOut()){
       this.userService.getProfile()
+      this.userService.getSettings()
     }
 
 

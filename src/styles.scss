@@ -21,6 +21,32 @@ body,html{
     height: 100%;
     min-height: 100%;
     margin-bottom: -50px;
+
+    .mat-radio-button ~ .mat-radio-button {
+        margin-left: 16px;
+    }
+
+    .task-date{
+        position: relative;
+        margin: 15px 0;
+        .date{
+            background: #fafafa;
+            position: relative;
+            z-index: 10;
+            padding-right: 10px;
+        }
+        hr{
+            position: absolute;
+            top: 6px;
+            width: 100%;
+            margin: 0;
+            z-index: 5;
+            height: 0;
+            color: #fff;
+            border: 0;
+            border-top: 1px solid #eee;
+        }
+    }
 }
 
 footer{
@@ -58,6 +84,12 @@ mat-sidenav-content{
     background-color:lighten(#f44336, 38%);
     &:hover{
         background-color:darken(lighten(#f44336, 38%), 2%) !important;
+    }
+}
+.priority-1 {
+    background-color:#f1f1f1;
+    &:hover{
+        background-color:darken(#f1f1f1, 2%) !important;
     }
 }
  
