@@ -1,7 +1,16 @@
 <mat-action-list>
-    <mat-list-item *ngFor="let task of tasks" [ngClass]="'priority-'+task.priority.order" (click)="openTask($event, task)">
-        <div>
-            <span>{{ task.deadline | date:'shortDate' }}</span> - 
+
+    <ng-container *ngFor="let task of tasks">
+
+
+
+        <div class='task-date' *ngIf="checkDate(task.deadline|date:'shortDate')"><span class="date">{{ task.deadline | date:'shortDate' }}</span><hr/></div>
+
+
+
+
+
+        <mat-list-item [ngClass]="'priority-'+task.priority.order" (click)="openTask($event, task)">
             <span>{{ task.name }}</span>
             <span class="task-card-footer">
                 <button *ngIf="type == 'active'" mat-icon-button color="accent" (click)="statusChange(task.id, true)">
@@ -20,11 +29,16 @@
                     <mat-icon aria-hidden="false">delete_forever</mat-icon>
                 </button>
             </span>
-        </div>
-    </mat-list-item>
+        </mat-list-item>
+
+    </ng-container>
+
+
+
+
 </mat-action-list>
 
 
 <div class="task-list-empty">
-    <h2 *ngIf="!tasks || tasks.length == 0">{{ 'Tasks not found' | translate }}</h2>
+    <h2 *ngIf="!tasks || tasks.length == 0" class="tasks-not-found">{{ 'Tasks not found' | translate }}</h2>
 </div>

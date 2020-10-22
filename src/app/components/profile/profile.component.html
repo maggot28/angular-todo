@@ -1,0 +1,53 @@
+<mat-sidenav-container class="tasks-list">
+    <mat-sidenav #sidenav mode="side">
+        <app-navigation></app-navigation>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="menu-toggle">
+            <mat-icon *ngIf="!sidenav.opened" mat-button (click)="sidenav.toggle()" aria-hidden="false">menu</mat-icon>
+            <mat-icon *ngIf="sidenav.opened" mat-button (click)="sidenav.toggle()" aria-hidden="false">menu_open</mat-icon>
+        </div>
+        <div class="container">
+            
+
+
+            <mat-card class="profile-card">
+                <mat-card-header>
+                  <div mat-card-avatar class="avatar" [style.background-image]="'url(' + profile?.avatarUrl + ')'"></div>
+                  <mat-card-title>{{ profile.name }}</mat-card-title>
+                  <mat-card-subtitle>{{ profile.email }}</mat-card-subtitle>
+                </mat-card-header>
+
+
+                <mat-card-content>
+                    <form [formGroup]="profileForm" (ngSubmit)="update(profileForm.value)">
+
+
+                        <mat-form-field>
+                            <mat-radio-group matInput formControlName="orderType" aria-label="Select an option">
+                                <mat-radio-button *ngFor="let option of settings?.order_type" value="{{ option }}">{{ option | translate }}</mat-radio-button>
+                            </mat-radio-group>
+                        </mat-form-field>
+
+
+
+                        <button mat-raised-button color="primary" type="submit" [disabled]="!profileForm.valid">{{ 'Add' | translate }}</button>
+                    </form>
+                </mat-card-content>
+
+
+                <mat-card-actions>
+                  <button mat-button>LIKE</button>
+                </mat-card-actions>
+            </mat-card>
+
+
+
+        </div>
+        <footer>
+            <a class="github" href="https://github.com/maggot28/angular-todo" target="_blank"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDMwIDMwIiBoZWlnaHQ9IjMwcHgiIGlkPSJHaXRodWIiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDMwIDMwIiB3aWR0aD0iMzBweCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHBhdGggY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTksMzBoLTMuOTk2aC00YzAsMCwwLjAxMS0yLjM3MiwwLTQgIGMtNS40NzMsMS4xNzgtNy0zLTctM2MtMS0yLTItMy0yLTNjLTItMS4xODgsMC0xLDAtMWMyLDAsMywyLDMsMmMxLjc1NSwyLjk4MSw0Ljg3OCwyLjUwMSw2LDJjMC0xLDAuNDM4LTIuNTEyLDEtMyAgQzcuNjM2LDE5LjUwOCw0LDE3LDQsMTJzMS4wMDQtNiwyLjAwNC03QzUuODAyLDQuNTA3LDQuOTY1LDIuNjg1LDYuMDM1LDBDNi4wMzUsMCw4LDAsMTAsM2MwLjk5MS0wLjk5MSw0LTEsNS4wMDEtMSAgQzE2LDIsMTkuMDA5LDIuMDA5LDIwLDNjMi0zLDMuOTY5LTMsMy45NjktM2MxLjA3LDIuNjg1LDAuMjMzLDQuNTA3LDAuMDMxLDVjMSwxLDIsMiwyLDdzLTMuNjMyLDcuNTA4LTgsOGMwLjU2MiwwLjQ4OCwxLDIuMjEsMSwzICBWMzB6IiBmaWxsPSIjMTQxMzEzIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGlkPSJDYXQiLz48L3N2Zz4=">{{ 'GitHub' | translate }}</a>
+        </footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+

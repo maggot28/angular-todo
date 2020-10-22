@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .profile-card {
+        max-width: 600px;
+        .avatar {
+            background-size: cover;
+            background-position: 50%;
+        }
+    }
+    mat-form-field{
+        width: 100%;
+    }
+}
+
+  

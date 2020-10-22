@@ -16,6 +16,8 @@ export class TasksListComponent {
   public tasks : Task[] = null
   public tabActive : boolean
   private subscription: Subscription
+  
+  private currentDateLabel: string = ""
 
   @Input() set active(active: boolean) {
     if(active){
@@ -48,6 +50,15 @@ export class TasksListComponent {
       this.taskService.delete(id, true)
     } else{
       this.taskService.delete(id)
+    }
+  }
+
+  checkDate(date:string){
+    if(date == this.currentDateLabel){
+      return false
+    } else {
+      this.currentDateLabel = date
+      return true
     }
   }
 

@@ -14,12 +14,14 @@ import { User } from 'src/app/models/user/user';
 export class UserService extends BaseService {
 
   public readonly currentUser : ReplaySubject<User>
+  public settings : ReplaySubject<any>
 
   constructor(
     private http: HttpClient,
   ) {
     super()
     this.currentUser = new ReplaySubject<User>(1)
+    this.settings = new ReplaySubject<any>(1)
    }
 
 
@@ -30,6 +32,17 @@ export class UserService extends BaseService {
     response.subscribe((response : ServerResponse) => { 
       if(response.status == true){
         this.currentUser.next(new User(response.data))
+      }
+    }) 
+  }
+
+  getSettings(){
+    let response = this.http.get(environment.apiUrl+'/user/settings')
+    .pipe(map(data => new ServerResponse(data))).pipe(catchError(this.handleError))
+
+    response.subscribe((response : ServerResponse) => { 
+      if(response.status == true){
+        this.settings.next(response.data)
       }
     }) 
   }
